@@ -21,7 +21,7 @@ function reset() {
   resetGame(chosenMaxLife);
 }
 
-// check win condition
+// check win condition, check player health and reset the game depends if player wins or monster wins
 function endRound() {
   const initialPlayerHealth = currentPlayerHealth;
   const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
