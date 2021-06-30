@@ -84,6 +84,7 @@ function healPlayerHandler() {
   endRound();
 }
 
+// this calls the buttons from vendor.js
 attackBtn.addEventListener("click", attackHandler);
 strongAttackBtn.addEventListener("click", strongAttackHandler);
 healBtn.addEventListener("click", healPlayerHandler);
