@@ -55,7 +55,7 @@ function writeToLog(battleEvents, val, monsterHealth, playerHealth) {
         finalMonsterHealth: monsterHealth,
         finalPlayerHealth: playerHealth,
       };
-      break;
+      break; //this keyword prevents fall-through, it tells JavaScript IF this case has been handled, NO other case should be handled, otherwise it will continue to go through the cases. The case condition of the second case is then ignored
     case LOG_EVENT_PLAYER_STRONG_ATTACK:
       logEntry = {
         event: battleEvents,
