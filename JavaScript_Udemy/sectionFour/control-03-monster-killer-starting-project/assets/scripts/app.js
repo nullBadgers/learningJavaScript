@@ -38,23 +38,17 @@ let hasBonusLife = true;
 // this alters the health bar on the page
 adjustHealthBars(chosenMaxLife);
 
-// logs all events
+// log all events
 function writeToLog(battleEvents, val, monsterHealth, playerHealth) {
   let logEntry = {
-    event: battleEvent,
+    event: battleEvents,
     value: val,
     finalMonster: monsterHealth,
     finalPlayerHealth: playerHealth,
   };
   switch (battleEvents) {
     case LOG_EVENT_PLAYER_ATTACK:
-      logEntry = {
-        event: battleEvents,
-        value: val,
-        target: "MONSTER",
-        finalMonsterHealth: monsterHealth,
-        finalPlayerHealth: playerHealth,
-      };
+      logEntry.target = 'MONSTER';
       break; //this keyword prevents fall-through, it tells JavaScript IF this case has been handled, NO other case should be handled, otherwise it will continue to go through the cases. The case condition of the second case is then ignored
     case LOG_EVENT_PLAYER_STRONG_ATTACK:
       logEntry = {
@@ -90,6 +84,9 @@ function writeToLog(battleEvents, val, monsterHealth, playerHealth) {
         finalMonsterHealth: monsterHealth,
         finalPlayerHealth: playerHealth,
       };
+      break;
+    default:
+      logEntry = {};
   }
   // the code below has been replaced with switch-cases above ^^^
   // if (battleEvents === LOG_EVENT_PLAYER_ATTACK) {
