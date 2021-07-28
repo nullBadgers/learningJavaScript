@@ -38,7 +38,7 @@ let hasBonusLife = true;
 // this alters the health bar on the page
 adjustHealthBars(chosenMaxLife);
 
-// log all events
+// log all events, using switch-cases
 function writeToLog(battleEvents, val, monsterHealth, playerHealth) {
   let logEntry = {
     event: battleEvents,
