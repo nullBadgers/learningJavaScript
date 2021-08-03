@@ -236,12 +236,14 @@ function healPlayerHandler() {
   endRound();
 }
 
+// prints log on to browser console, using a 'for loop'
 function printLogHandler() {
+  for (let i = 0; i < 3; i++ )
   console.log(battleLog);
 }
 
 // this calls the buttons from vendor.js
 attackBtn.addEventListener("click", attackHandler);
-strongAttackBtn.addEventListener("click", strongAttackHandler);
+strongAttackBtn.addEventListener("click" , strongAttackHandler);
 healBtn.addEventListener("click", healPlayerHandler);
 logBtn.addEventListener("click", printLogHandler);
