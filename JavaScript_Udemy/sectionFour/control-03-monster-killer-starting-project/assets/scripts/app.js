@@ -237,6 +237,10 @@ function healPlayerHandler() {
 }
 
 // prints log on to browser console, using a 'for loop'
+//sets a variable before the loop starts (let i = 0)
+//defines the condition for the loop to run (i must be less than 5)
+//increases a value (i++) each time the code block in the loop has been executed.
+
 function printLogHandler() {
   for (let i = 0; i < 3; i++ )
   console.log(battleLog);
