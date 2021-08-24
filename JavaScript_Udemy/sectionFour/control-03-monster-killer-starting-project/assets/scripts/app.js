@@ -48,7 +48,7 @@ function writeToLog(battleEvents, val, monsterHealth, playerHealth) {
   };
   switch (battleEvents) {
     case LOG_EVENT_PLAYER_ATTACK:
-      logEntry.target = 'MONSTER';
+      logEntry.target = "MONSTER";
       break; //this keyword prevents fall-through, it tells JavaScript IF this case has been handled, NO other case should be handled, otherwise it will continue to go through the cases. The case condition of the second case is then ignored
     case LOG_EVENT_PLAYER_STRONG_ATTACK:
       logEntry = {
@@ -241,13 +241,34 @@ function healPlayerHandler() {
 //defines the condition for the loop to run (i must be less than 5)
 //increases a value (i++) each time the code block in the loop has been executed.
 
+// this is a for loop
+// function printLogHandler() {
+//   for (let i = 0; i < 3; i++ )
+//   console.log(battleLog);
+// }
+
+// this is a while and do-while loop
 function printLogHandler() {
-  for (let i = 0; i < 3; i++ )
-  console.log(battleLog);
+  for (let i = 0; i < 3; i++) {
+    console.log("-0-0-0-0-0-0-");
+  }
+  let j = 3;
+  do {
+    console.log(j);
+    j++;
+  } while (j < 3);
+  let i = 0;
+  for (const logEntry of battleLog) {
+    console.log(`#${i}`); // gives us the ability to dynamically check the value of the index {i}
+    for (const key in logEntry) {
+      console.log(`${key}) => ${logEntry[key]}`);
+    }
+    i++;
+  }
 }
 
 // this calls the buttons from vendor.js
 attackBtn.addEventListener("click", attackHandler);
-strongAttackBtn.addEventListener("click" , strongAttackHandler);
+strongAttackBtn.addEventListener("click", strongAttackHandler);
 healBtn.addEventListener("click", healPlayerHandler);
 logBtn.addEventListener("click", printLogHandler);
