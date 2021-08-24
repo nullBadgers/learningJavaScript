@@ -21,10 +21,12 @@ const LOG_EVENT_MONSTER_ATTACK = "MONSTER_ATTACK";
 const LOG_EVENT_PLAYER_HEAL = "PLAYER_HEAL";
 const LOG_EVENT_GAME_OVER = "GAME_OVER";
 
+
 // WAS hard coded health of player
 let chosenMaxLife = parseInt(enteredValue);
 
 let battleLog = [];
+let lastLoggedEntry;
 
 // this checks if user has entered a non number value (NaN), it will then default to 100 OR (||) if the user enters a negative value
 if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
@@ -259,9 +261,13 @@ function printLogHandler() {
   } while (j < 3);
   let i = 0;
   for (const logEntry of battleLog) {
-    console.log(`#${i}`); // gives us the ability to dynamically check the value of the index {i}
-    for (const key in logEntry) {
-      console.log(`${key}) => ${logEntry[key]}`);
+    if (!lastLoggedEntry && lastLoggedEntry !== 0 || lastLoggedEntry < i) {
+      console.log(`#${i}`); // gives us the ability to dynamically check the value of the index {i}
+      for (const key in logEntry) {
+        console.log(`${key}) => ${logEntry[key]}`);
+      }
+      lastLoggedEntry = i;
+      break;
     }
     i++;
   }
