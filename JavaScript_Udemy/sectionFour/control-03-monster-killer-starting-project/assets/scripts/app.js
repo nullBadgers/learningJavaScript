@@ -11,9 +11,6 @@ const MODE_ATTACK = "ATTACK";
 //MODE_STRONG_ATTACK = 1
 const MODE_STRONG_ATTACK = "STRONG_ATTACK";
 
-// prompts user to pick the health for the player and monster
-const enteredValue = prompt("Enter max health for you and the monster", "100");
-
 // logging the events
 const LOG_EVENT_PLAYER_ATTACK = 0;
 const LOG_EVENT_PLAYER_STRONG_ATTACK = 1;
@@ -21,16 +18,34 @@ const LOG_EVENT_MONSTER_ATTACK = "MONSTER_ATTACK";
 const LOG_EVENT_PLAYER_HEAL = "PLAYER_HEAL";
 const LOG_EVENT_GAME_OVER = "GAME_OVER";
 
-
-// WAS hard coded health of player
-let chosenMaxLife = parseInt(enteredValue);
-
 let battleLog = [];
 let lastLoggedEntry;
 
-// this checks if user has entered a non number value (NaN), it will then default to 100 OR (||) if the user enters a negative value
-if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
+function getMaxLifeValues() {
+  // prompts user to pick the health for the player and monster
+  const enteredValue = prompt(
+    "Enter max health for you and the monster",
+    "100"
+  );
+
+  const parsedValue = parseInt(enteredValue);
+
+  // this checks if user has entered a non number value (NaN), it will then default to 100 OR (||) if the user enters a negative value
+  if (isNaN(parsedValue) || parsedValue <= 0) {
+    throw { message: "Invalid user input, not a number!" }; //throws an error if user enters text instead of numbers
+  }
+  return parsedValue;
+}
+
+let chosenMaxLife;
+
+// error handling
+try {
+  chosenMaxLife = getMaxLifeValues();
+} catch (error) {
+  console.log(error);
   chosenMaxLife = 100;
+  alert("You entered something wrong, default health value of 100 was used.");
 }
 
 let currentMonsterHealth = chosenMaxLife;
@@ -261,7 +276,7 @@ function printLogHandler() {
   } while (j < 3);
   let i = 0;
   for (const logEntry of battleLog) {
-    if (!lastLoggedEntry && lastLoggedEntry !== 0 || lastLoggedEntry < i) {
+    if ((!lastLoggedEntry && lastLoggedEntry !== 0) || lastLoggedEntry < i) {
       console.log(`#${i}`); // gives us the ability to dynamically check the value of the index {i}
       for (const key in logEntry) {
         console.log(`${key}) => ${logEntry[key]}`);
