@@ -1,0 +1,14 @@
+{
+  "name": "learningasync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "async_example.js",
+  "scripts": {
+    "start": "node iceCream.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.6"
+  }
+}
