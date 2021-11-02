@@ -1,6 +1,3 @@
-const { time } = require("console");
-const { setuid } = require("process");
-
 //our stock of ingredients
 let stocks = {
   fruits: ["Strawberry", "Grapes", "Banana", "Apple"],
@@ -11,17 +8,48 @@ let stocks = {
 
 let is_shop_open = true;
 
-let order = () => {
+function time(ms) {
   return new Promise((resolve, reject) => {
-    if (true) {
-      resolve();
+    if (is_shop_open) {
+      setTimeout(resolve, ms);
     } else {
-      reject();
+      reject(console.log("Shop closed."));
     }
   });
-};
+}
 
-async function order() {}
+async function kitchen() {
+  try {
+    await time(2000);
+    console.log(`${stocks.fruits[0]} was selected.`);
+
+    console.log("Start making ice cream.");
+
+    await time(3000);
+    console.log("Cut the fruit.");
+
+    await time(1000);
+    console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} was added.`);
+
+    await time(1000);
+    console.log("Starting ice cream machine.");
+
+    await time(2000);
+    console.log(`Ice cream placed into ${stocks.holder[0]}.`);
+
+    await time(3000);
+    console.log(`${stocks.toppings[0]} topping was selected.`);
+
+    await time(2000);
+    console.log("Serve the ice cream.");
+  } catch (error) {
+    console.log("Customer left", error);
+  } finally {
+    console.log("Day ended, shops closed.");
+  }
+}
+
+kitchen();
 
 //using promises
 // let order = (time, work) => {
