@@ -1,5 +1,5 @@
 //load a book from disk (book folder)
-function loadBook(fileName, displayName) {
+let loadBook = (fileName, displayName) => {
   let currentBook = "";
   let url = "books/" + fileName;
 
@@ -9,12 +9,12 @@ function loadBook(fileName, displayName) {
   document.getElementById("keyword").value = "";
 
   //create a server request to load books and then run as async request and then initiate network traffic
-  const xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
   xhr.send();
 
   //this anon func will check if request is done
-  xhr.onreadystatechange = function () {
+  xhr.onreadystatechange = () => {
     if (xhr.readyState == 4 && xhr.status == 200) {
       currentBook = xhr.responseText;
 
@@ -25,8 +25,8 @@ function loadBook(fileName, displayName) {
       document.getElementById("fileContent").innerHTML = currentBook;
 
       //this will scroll the viewer to top when changing books (loading a book)
-      const elmnt = document.getElementById("fileContent");
+      let elmnt = document.getElementById("fileConent");
       elmnt.scrollTop = 0;
     }
   };
-}
+};
